@@ -1,0 +1,47 @@
+extends ../layout
+
+block content
+  div.container
+    h1= title
+    form(method="post", id="article-add-form", enctype="multipart/form-data")
+      div.form-control
+        label(for="published") Опубликовано
+        input(id="published", type="radio", name="visible", value="1")
+        label(for="nopublished") Снято с публикации
+        input(id="nopublished", type="radio", name="visible", value="0", checked="true")
+      div.form-control
+        label(for="title") Название статьи
+        input(id="title", type="text", name="title")
+      div.form-control
+        label(for="slug") Алиас
+        input(id="slug", type="text", name="slug")
+      div.form-control
+        label(for="description") Meta description
+        textarea(id="description", name="description")
+      div.form-control
+        label(for="keywords") Meta keywords
+        textarea(id="keywords", name="keywords")
+      div.form-control
+        label(for="seopreview") Seo анонс
+        textarea(id="seopreview", name="seopreview")
+      div.form-control
+        label(for="preview") Анонс
+        textarea(id="preview", name="preview")
+      div.form-control
+        label(for="text") Текст
+        textarea(id="text", name="text")
+      div.form-control
+        label(for="category") Определить в категорию
+        select(id="category", name="category")
+          each item in categories
+            option(value=item._id) #{item.name}
+      div.form-control
+        label(for="sort") Сортировка
+        input(id="sort", type="number", name="sort", value="0")
+      div.form-control
+        label(for="file") Миниатюра
+        input(id="file", type="file", name="file")
+      div.form-control
+        button(type="submit") Добавить статью
+    include ../../partial/form/upload-image
+  
